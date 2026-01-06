@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background -->
+  <rect width="100" height="100" fill="#000000"/>
+  
+  <!-- Magnifying Glass Handle -->
+  <path d="M 70 75 L 85 90" stroke="#4A9EFF" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M 70 75 L 85 90" stroke="#1E3A5F" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.5"/>
+  
+  <!-- Magnifying Glass Lens (outer yellow border) -->
+  <circle cx="50" cy="50" r="30" fill="none" stroke="#FFD700" stroke-width="4"/>
+  <!-- Inner dark blue border -->
+  <circle cx="50" cy="50" r="28" fill="none" stroke="#1E3A5F" stroke-width="2"/>
+  <!-- White lens background -->
+  <circle cx="50" cy="50" r="26" fill="#FFFFFF"/>
+  
+  <!-- Browser/Interface inside magnifying glass -->
+  <!-- Top bar (dark blue) -->
+  <rect x="30" y="35" width="40" height="4" fill="#1E3A5F" rx="1"/>
+  
+  <!-- Window controls (red, yellow, green circles) -->
+  <circle cx="33" cy="37" r="1.5" fill="#FF5F56"/>
+  <circle cx="37" cy="37" r="1.5" fill="#FFBD2E"/>
+  <circle cx="41" cy="37" r="1.5" fill="#27C93F"/>
+  
+  <!-- Address/Search bar -->
+  <rect x="30" y="42" width="35" height="3" fill="#1E3A5F" rx="1"/>
+  <rect x="67" y="42" width="3" height="3" fill="#1E3A5F" stroke="#1E3A5F" stroke-width="0.5" rx="0.5"/>
+  
+  <!-- Content area - Yellow bar (heading) -->
+  <rect x="32" y="48" width="36" height="3" fill="#FFD700" rx="1"/>
+  
+  <!-- Content lines (light yellow) -->
+  <rect x="32" y="53" width="30" height="1.5" fill="#FFE87C" rx="0.5"/>
+  <rect x="32" y="56" width="28" height="1.5" fill="#FFE87C" rx="0.5"/>
+  
+  <!-- Light blue bar -->
+  <rect x="32" y="60" width="34" height="2.5" fill="#4A9EFF" rx="1"/>
+  
+  <!-- Small dark blue dots (navigation/bullet points) -->
+  <circle cx="34" cy="66" r="1" fill="#1E3A5F"/>
+  <circle cx="38" cy="66" r="1" fill="#1E3A5F"/>
+  <circle cx="42" cy="66" r="1" fill="#1E3A5F"/>
+</svg>

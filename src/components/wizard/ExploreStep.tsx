@@ -34,49 +34,6 @@ interface ExploreStepProps {
 
 const coreFeatures = [
   {
-    id: "summarization",
-    icon: FileText,
-    title: "Summarization",
-    subtitle: "LLM-based Key Metrics",
-    description: "Generates a 3-bullet summary of every contract",
-    processingTime: 2,
-  },
-  {
-    id: "navigation",
-    icon: GitBranch,
-    title: "Navigation",
-    subtitle: "Hierarchy & Versioning",
-    description: "Automatically links Amendments to Base Agreements",
-    processingTime: 1,
-  },
-  {
-    id: "deepAnalysis",
-    icon: Table,
-    title: "Deep Analysis",
-    subtitle: "Table & Chart Extraction",
-    description: "Converts pricing tables into searchable Excel/Chart formats",
-    processingTime: 3,
-  },
-  {
-    id: "assistance",
-    icon: MessageCircle,
-    title: "Assistance",
-    subtitle: "Gen AI Chatbot",
-    description: 'Enables "Ask my Contracts" Q&A for this project',
-    processingTime: 2,
-  },
-  {
-    id: "quality",
-    icon: CheckCircle,
-    title: "Quality",
-    subtitle: "Spell Check & Validation",
-    description: "Flags inconsistent dates or missing signatures",
-    processingTime: 1,
-  },
-];
-
-const microservices = [
-  {
     id: "tableExtraction",
     icon: LayoutGrid,
     title: "Table & Visual Extraction",
@@ -114,6 +71,49 @@ const microservices = [
     title: "Automated Notifications",
     subtitle: "Pipeline Monitoring",
     description: "Email updates or Teams alerts when processing is complete or high-risk flags are triggered",
+    processingTime: 1,
+  },
+];
+
+const microservices = [
+  {
+    id: "summarization",
+    icon: FileText,
+    title: "Summarization",
+    subtitle: "LLM-based Key Metrics",
+    description: "Generates a 3-bullet summary of every contract",
+    processingTime: 2,
+  },
+  {
+    id: "navigation",
+    icon: GitBranch,
+    title: "Navigation",
+    subtitle: "Hierarchy & Versioning",
+    description: "Automatically links Amendments to Base Agreements",
+    processingTime: 1,
+  },
+  {
+    id: "deepAnalysis",
+    icon: Table,
+    title: "Deep Analysis",
+    subtitle: "Table & Chart Extraction",
+    description: "Converts pricing tables into searchable Excel/Chart formats",
+    processingTime: 3,
+  },
+  {
+    id: "assistance",
+    icon: MessageCircle,
+    title: "Assistance",
+    subtitle: "Gen AI Chatbot",
+    description: 'Enables "Ask my Contracts" Q&A for this project',
+    processingTime: 2,
+  },
+  {
+    id: "quality",
+    icon: CheckCircle,
+    title: "Quality",
+    subtitle: "Spell Check & Validation",
+    description: "Flags inconsistent dates or missing signatures",
     processingTime: 1,
   },
 ];
@@ -251,12 +251,12 @@ export function ExploreStep({ data, onChange }: ExploreStepProps) {
         {coreFeatures.map((feature, index) => renderFeatureCard(feature, index))}
       </div>
 
-      {/* Microservices Section */}
+      {/* Functional Modules Section */}
       <div className="space-y-4">
         <div className="flex items-center gap-2 mb-4">
           <div className="h-px flex-1 bg-border" />
           <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
-            Microservices & Functional Modules
+            Functional Modules
           </span>
           <div className="h-px flex-1 bg-border" />
         </div>
