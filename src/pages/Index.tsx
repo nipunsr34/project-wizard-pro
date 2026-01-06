@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Rocket, Sparkles } from "lucide-react";
+import { ChevronLeft, ChevronRight, Rocket, Sparkles, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WizardLayout } from "@/components/wizard/WizardLayout";
 import { WizardProgress } from "@/components/wizard/WizardProgress";
@@ -8,6 +8,10 @@ import { DiscoverStep } from "@/components/wizard/DiscoverStep";
 import { ExploreStep } from "@/components/wizard/ExploreStep";
 import { ValidateStep } from "@/components/wizard/ValidateStep";
 import { DeployStep } from "@/components/wizard/DeployStep";
+import { DatasetManager } from "@/components/wizard/DatasetManager";
+import { TestingMonitoring } from "@/components/wizard/TestingMonitoring";
+import { FeedbackBugReport } from "@/components/FeedbackBugReport";
+import { useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
 
 const steps = [
@@ -23,6 +27,11 @@ interface WizardData {
     businessCategory: string;
     ingestionSource: string;
     confidentialityLevel: string;
+    datasetManager: {
+      attributes: Array<{ name: string; type: string; description: string }>;
+      customDictionary: File | null;
+      keywordFlags: string[];
+    };
   };
   explore: {
     summarization: boolean;
@@ -44,10 +53,17 @@ interface WizardData {
     exportData: boolean;
     notifications: boolean;
     selectedUsers: string[];
+    userRoles: Record<string, "edit" | "search" | "view">;
+    lobAssignments: Record<string, string[]>;
+    externalAccess: {
+      enabled: boolean;
+      auditors: Array<{ email: string; expiryDate: string }>;
+    };
   };
 }
 
 const Index = () => {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [wizardData, setWizardData] = useState<WizardData>({
     discover: {
@@ -55,6 +71,11 @@ const Index = () => {
       businessCategory: "",
       ingestionSource: "",
       confidentialityLevel: "",
+      datasetManager: {
+        attributes: [],
+        customDictionary: null,
+        keywordFlags: [],
+      },
     },
     explore: {
       summarization: true,
@@ -76,6 +97,12 @@ const Index = () => {
       exportData: false,
       notifications: true,
       selectedUsers: [],
+      userRoles: {},
+      lobAssignments: {},
+      externalAccess: {
+        enabled: false,
+        auditors: [],
+      },
     },
   });
 
@@ -111,10 +138,25 @@ const Index = () => {
     switch (currentStep) {
       case 1:
         return (
-          <DiscoverStep
-            data={wizardData.discover}
-            onChange={(data) => updateStepData("discover", data)}
-          />
+          <div className="space-y-6">
+            <DiscoverStep
+              data={{
+                projectName: wizardData.discover.projectName,
+                businessCategory: wizardData.discover.businessCategory,
+                ingestionSource: wizardData.discover.ingestionSource,
+                confidentialityLevel: wizardData.discover.confidentialityLevel,
+              }}
+              onChange={(data) => updateStepData("discover", data)}
+            />
+            <DatasetManager
+              data={wizardData.discover.datasetManager}
+              onChange={(data) =>
+                updateStepData("discover", {
+                  datasetManager: { ...wizardData.discover.datasetManager, ...data },
+                })
+              }
+            />
+          </div>
         );
       case 2:
         return (
@@ -125,10 +167,13 @@ const Index = () => {
         );
       case 3:
         return (
-          <ValidateStep
-            data={wizardData.validate}
-            onChange={(data) => updateStepData("validate", data)}
-          />
+          <div className="space-y-6">
+            <ValidateStep
+              data={wizardData.validate}
+              onChange={(data) => updateStepData("validate", data)}
+            />
+            <TestingMonitoring projectId={wizardData.discover.projectName} />
+          </div>
         );
       case 4:
         return (
@@ -148,8 +193,21 @@ const Index = () => {
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-8"
+        className="text-center mb-8 relative"
       >
+        {/* Admin Dashboard Link */}
+        <div className="absolute top-0 right-0">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => navigate("/admin")}
+            className="gap-2"
+          >
+            <BarChart3 className="w-4 h-4" />
+            Admin Dashboard
+          </Button>
+        </div>
+
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border shadow-card mb-4">
           <Sparkles className="w-4 h-4 text-secondary" />
           <span className="text-sm font-medium text-foreground">Document Digitization Wizard</span>
@@ -216,6 +274,12 @@ const Index = () => {
           )}
         </Button>
       </motion.div>
+
+      {/* Global Feedback/Bug Report */}
+      <FeedbackBugReport 
+        currentScreen={`Wizard - Step ${currentStep}`}
+        currentFeature={steps[currentStep - 1]?.label}
+      />
     </WizardLayout>
   );
 };
