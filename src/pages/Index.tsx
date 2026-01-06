@@ -30,6 +30,11 @@ interface WizardData {
     deepAnalysis: boolean;
     assistance: boolean;
     quality: boolean;
+    tableExtraction: boolean;
+    paragraphExtraction: boolean;
+    contractSearch: boolean;
+    dashboardAnalytics: boolean;
+    automatedNotifications: boolean;
   };
   validate: {
     validated: boolean;
@@ -57,6 +62,11 @@ const Index = () => {
       deepAnalysis: false,
       assistance: true,
       quality: false,
+      tableExtraction: false,
+      paragraphExtraction: false,
+      contractSearch: true,
+      dashboardAnalytics: false,
+      automatedNotifications: true,
     },
     validate: {
       validated: false,
