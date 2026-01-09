@@ -145,7 +145,7 @@ const microservices = [
     icon: TrendingUp,
     title: "Comparison of Performance Analysis",
     subtitle: "Benchmark Analytics",
-    description: "Compares contract performance metrics across vendors, time periods, or business units",
+    description: "Checks the performance guarantee mentioned in contract against external documents to see actual performance",
     processingTime: 4,
   },
   {
