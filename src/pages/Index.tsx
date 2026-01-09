@@ -44,6 +44,10 @@ interface WizardData {
     contractSearch: boolean;
     dashboardAnalytics: boolean;
     automatedNotifications: boolean;
+    legislationAnalysis: boolean;
+    contractRedlining: boolean;
+    performanceComparison: boolean;
+    multiStateAnalysis: boolean;
   };
   validate: {
     validated: boolean;
@@ -88,6 +92,10 @@ const Index = () => {
       contractSearch: true,
       dashboardAnalytics: false,
       automatedNotifications: true,
+      legislationAnalysis: false,
+      contractRedlining: false,
+      performanceComparison: false,
+      multiStateAnalysis: false,
     },
     validate: {
       validated: false,

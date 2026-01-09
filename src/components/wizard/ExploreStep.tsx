@@ -11,7 +11,11 @@ import {
   FileSearch,
   Search,
   BarChart3,
-  Bell
+  Bell,
+  Scale,
+  Edit3,
+  TrendingUp,
+  Map
 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
@@ -28,6 +32,10 @@ interface ExploreStepProps {
     contractSearch: boolean;
     dashboardAnalytics: boolean;
     automatedNotifications: boolean;
+    legislationAnalysis: boolean;
+    contractRedlining: boolean;
+    performanceComparison: boolean;
+    multiStateAnalysis: boolean;
   };
   onChange: (data: Partial<ExploreStepProps["data"]>) => void;
 }
@@ -115,6 +123,38 @@ const microservices = [
     subtitle: "Spell Check & Validation",
     description: "Flags inconsistent dates or missing signatures",
     processingTime: 1,
+  },
+  {
+    id: "legislationAnalysis",
+    icon: Scale,
+    title: "New Legislation Analysis",
+    subtitle: "Regulatory Compliance",
+    description: "Identifies contracts impacted by new legislation and flags compliance risks",
+    processingTime: 3,
+  },
+  {
+    id: "contractRedlining",
+    icon: Edit3,
+    title: "Contract Notations/Redlining",
+    subtitle: "Change Tracking",
+    description: "Tracks and highlights contract changes, amendments, and redlined versions with version control",
+    processingTime: 2,
+  },
+  {
+    id: "performanceComparison",
+    icon: TrendingUp,
+    title: "Comparison of Performance Analysis",
+    subtitle: "Benchmark Analytics",
+    description: "Compares contract performance metrics across vendors, time periods, or business units",
+    processingTime: 4,
+  },
+  {
+    id: "multiStateAnalysis",
+    icon: Map,
+    title: "Multi-state Analysis",
+    subtitle: "Geographic Compliance",
+    description: "Analyzes contracts across multiple states/jurisdictions for regulatory compliance and variations",
+    processingTime: 3,
   },
 ];
 
